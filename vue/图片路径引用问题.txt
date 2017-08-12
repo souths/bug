@@ -1,0 +1,65 @@
+谨防图片路径被当做字符串处理,而不能显示图片
+http://blog.csdn.net/letasian/article/details/76219889
+当我们在Vue.js项目中引用图片时，关于图片路径有以下几种情形：
+
+使用一
+
+我们在data里面定义好图片路径
+
+imgUrl:'../assets/logo.png'
+1
+1
+然后，在template模板里面
+
+/*错误写法*/
+<img src="{{imgUrl}}">
+1
+2
+1
+2
+这样是错误的写法，我们应该用v-bind绑定图片的srcs属性
+
+<img :src="imgUrl">
+1
+1
+或者
+
+<img src="../assets/logo.png">
+1
+1
+这种方式是按照正常HTML语法引用路径，放在模板里可以被webpack打包出来。
+
+使用二
+
+当我们需要在js代码里面写图片路径的时候，如果我们在data里面写
+
+/*错误写法*/
+imgUrl:'../assets/logo.png'
+1
+2
+1
+2
+此时webpack只会把它当做字符串处理从而找不到图片地址，此时我们可以使用import引入图片路径：
+
+<img :src="avatar" />
+1
+1
+import avatar from '@/assets/logo.png'
+1
+1
+在data里面定义
+
+avatar: avatar
+1
+1
+情形三
+
+我们也可以把图片放在外层的static文件夹里面，然后在data里面定义：
+
+imgUrl ： '../../static/logo.png'
+1
+1
+<img :src="imgUrl" />
+1
+1
+以上就是我们在Vue.js中引用图片路径的方式。

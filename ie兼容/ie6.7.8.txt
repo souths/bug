@@ -1,0 +1,9 @@
+ie6.7.8兼容css3的border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+等属性需要pie.htc文件, 地址http://css3pie.com/download/
+然后还需要在css样式写上behavior: url(pie/pie.htc); 
+
+ie678下input中的文字居中设置:line-height: 38px;vertical-align: middle;
+/*图片居中*/
+ vertical-align: middle;

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子元素浮动，同时父元素浮动解决父元素自适应高度问题</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        div{
+            margin: 0 auto;
+            width: 500px;
+
+        }
+        .se{
+            float: left;  /*子元素浮动之后要想它的父元素有自适应的高度，可以给需要自适应高度的父元素添加float：left，这样这个父元素就会根据子元素的高度自动的添加自适应高度，从而可以设置边框等设置*/
+        }
+
+        div>ul{
+            border-bottom: 1px solid red;
+            float: left;
+        }
+        div>ul>li{
+            width: 100px;
+            background-color: #ccc;
+            padding: 10px;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="se">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+    </div>
+    <div class="se">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+    </div>
+    <div class="se">
+        <ul>
+            <li>1</li>
+
+        </ul>
+    </div>
+
+</div>
+
+
+</body>
+</html>

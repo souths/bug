@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+
+    <title>移动端适配</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 2rem;
+            height: 2rem;
+            font-size: 0.18rem;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">xfsdf</div>
+<script>
+    (function (doc, win) {
+        /*1.设置视口 <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">*/
+        /*2.设置font-size*/
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                //如果屏幕大于750（750是根据我效果图(psd)设置的，具体数值参考效果图），就设置clientWidth=750，防止font-size会超过100px
+                if (clientWidth > 750) {
+                    clientWidth = 750
+                }
+                //设置根元素font-size大小
+                /*750是根据效果图(psd)宽度设置，具体数值参考效果图,然后假如需要设置元素的高度宽度就用单位rem,
+                * 比如 然后px转rem就除以100  1rem=100px;
+                * .box{
+                        width: 200px -->2rem;  效果图(psd)元素宽度高度为200px,那么转换成为rem单位就是2rem
+                        height: 200px  -->2rem;  效果图(psd)元素宽度高度为200px,那么转换成为rem单位就是2rem
+                         font-size: 18px  -->0.18rem;
+                        background-color:red;
+        }
+                * */
+                docEl.style.fontSize = (clientWidth / 750) * 100 + 'px';
+            };
+        //屏幕大小改变，或者横竖屏切换时，触发函数
+        win.addEventListener(resizeEvt, recalc, false);
+        //文档加载完成时，触发函数
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+
+</body>
+</html>
